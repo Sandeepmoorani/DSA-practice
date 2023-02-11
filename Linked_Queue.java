@@ -4,6 +4,7 @@ interface Queue{
       int size();
       Object first();
   }
+//   here i write just methods of Queue 
 
   class LinkedQueue implements Queue{
       Node head;
