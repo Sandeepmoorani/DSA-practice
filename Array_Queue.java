@@ -69,6 +69,7 @@ class ArrayQueue implements Queue {
         
     }
 }
+// here in this file i use array through Queue 
 
 public class Array_Queue {
     public static void main(String[] args) {
