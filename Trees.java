@@ -1,4 +1,5 @@
 import java.util.*;
+
 public class Trees {
     static class Node {
         int data;
@@ -27,6 +28,8 @@ public class Trees {
         }
     }
 
+    // Traversal of Trees 
+
     public static void preorder(Node root) {
         if (root == null)
             return;
@@ -35,55 +38,61 @@ public class Trees {
         preorder(root.right);
     }
 
+    // *************************
+
     public static void inorder(Node root) {
-        if(root == null ){
+        if (root == null) {
             return;
         }
         inorder(root.left);
-        System.out.println(root.data +" ");
+        System.out.println(root.data + " ");
         inorder(root.right);
 
     }
 
+    // *****************************
+
     public static void postorder(Node root) {
-        if(root == null ){
+        if (root == null) {
             return;
         }
         postorder(root.left);
         postorder(root.right);
-        System.out.println(root.data +" ");
-         }
+        System.out.println(root.data + " ");
+    }
 
-         public static void levelorder(Node root){
-            if(root == null){
-                return;
-            }
-            Queue<Node> q= new LinkedList<Node>();
-            q.add(root);
-            q.add(null);
+    // ******************************
 
-            while(!q.isEmpty()){
-                Node currNode=q.remove();
-                if(currNode == null){
-                    System.out.println();
-                    if(q.isEmpty()){
-                        break;
-                    }else{
-                        q.add(null);
-                    }
+    public static void levelorder(Node root) {
+        if (root == null) {
+            return;
+        }
+        Queue<Node> q = new LinkedList<Node>();
+        q.add(root);
+        q.add(null);
 
-                }else{
-                    System.out.print(currNode.data+" ");
-                    if(currNode.left != null){
-                        q.add(currNode.left);
-                    }
-                    if(currNode.right != null){
-                        q.add(currNode.right);
-                    }
-
+        while (!q.isEmpty()) {
+            Node currNode = q.remove();
+            if (currNode == null) {
+                System.out.println();
+                if (q.isEmpty()) {
+                    break;
+                } else {
+                    q.add(null);
                 }
+
+            } else {
+                System.out.print(currNode.data + " ");
+                if (currNode.left != null) {
+                    q.add(currNode.left);
+                }
+                if (currNode.right != null) {
+                    q.add(currNode.right);
+                }
+
             }
-         }
+        }
+    }
 
     public static void main(String[] args) {
         int nodes[] = { 1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1 };
