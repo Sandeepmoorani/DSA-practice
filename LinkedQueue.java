@@ -1,78 +1,86 @@
-class LinkedQueue {
-    Node front ;
-    Node rare ;
-    int size = -1;
 
-    private class Node {
-        Object data;
-        Node next;
-        Node prev;
-        Node(Object data) {
-            this.data = data;
-            this.next=null;
-            this.prev=null;
-        }
-    }
+// Java program for linked-list implementation of queue
 
-    public boolean isEmpty() {
-        return size == 0;
-    }
+// A linked list (LL) node to store a queue entry
+class QNode {
+	int key;
+	QNode next;
 
-    public void enqueue(Object data) {
-        Node newnode = new Node(data);
-        if (size == -1) {
-            rare = front = newnode;
-            size++;
-        }
+	// constructor to create a new linked list node
+	public QNode(int key)
+	{
+		this.key = key;
+		this.next = null;
+	}
+}
 
-        rare.next = newnode;
-        newnode.prev=rare;
-        rare = newnode;
-        size++;
-    }
+// A class to represent a queue
+// The queue, front stores the front node of LL and rear
+// stores the last node of LL
+class Queue {
+	QNode front, rear;
 
-    public Object dequeue() {
-        if (isEmpty()) {
-            return null;
-        }
+	public Queue() { this.front = this.rear = null; }
 
-        Object first = this.front.data;
-        front = this.front.next;
-        size--;
-        return first;
+	// Method to add an key to the queue.
+	void enqueue(int key)
+	{
 
-    }
+		// Create a new LL node
+		QNode temp = new QNode(key);
 
-    public void ReverseQueue() {
-     
-            if (isEmpty()) {
-                System.out.println("The list is Empty");
-            }
-    
-            Node first = rare;
-            Object x=first.data;
-            int count=0;
-            while (count!=size) {
-                System.out.print(first.data + " -> ");
-                first = first.prev;
-                count++;
-            }
-            System.out.println(" null");
-       
-     
+		// If queue is empty, then new node is front and
+		// rear both
+		if (this.rear == null) {
+			this.front = this.rear = temp;
+			return;
+		}
 
-    }
+		// Add the new node at the end of queue and change
+		// rear
+		this.rear.next = temp;
+		this.rear = temp;
+	}
 
-    public void print_LinkedQueue() {
-        if (isEmpty()) {
-            System.out.println("The list is Empty");
-        }
+	// Method to remove an key from queue.
+	void dequeue()
+	{
+		// If queue is empty, return NULL.
+		if (this.front == null)
+			return;
 
-        Node first = front;
-        while (first!=null) {
-            System.out.print(first.data + " -> ");
-            first = first.next;
-        }
-        System.out.println(" null");
+		// Store previous front and move front one node
+		// ahead
+		QNode temp = this.front;
+		this.front = this.front.next;
+
+		// If front becomes NULL, then change rear also as
+		// NULL
+		if (this.front == null)
+			this.rear = null;
+	}
+}
+
+// Driver code
+public class LinkedQueue {
+	public static void main(String[] args)
+	{
+		Queue q = new Queue();
+		q.enqueue(10);
+		q.enqueue(20);
+		q.dequeue();
+		q.dequeue();
+		q.enqueue(30);
+		q.enqueue(40);
+		q.enqueue(50);
+		q.dequeue();
+		System.out.println("Queue Front : " + ((q.front != null) ? (q.front).key : -1));
+		System.out.println("Queue Rear : " + ((q.rear != null) ? (q.rear).key : -1));
+	}
+
+	public void add(int i) {
+	}
+
+    public void remove() {
     }
 }
